@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.lingxiao.tasktodo.Utils.DateUtils;
@@ -35,19 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        LinearLayout linearLayout = findViewById(R.id.todo_list);
-        for (Todo todo : todos) {
-            View view = getListItemView(todo);
-            linearLayout.addView(view);
-        }
+        ListView listView = findViewById(R.id.list_view);
+        listView.setAdapter(new TodoAdapter(this, todos));
     }
 
-    private View getListItemView(Todo todo) {
-        View view = getLayoutInflater().inflate(R.layout.list_item, null);;
 
-        ((TextView) view.findViewById(R.id.list_item_text)).setText(todo.text);
-
-        return view;
-
-    }
 }

@@ -7,16 +7,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.lingxiao.tasktodo.MainActivity">
 
-    <ScrollView
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/todo_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-    </ScrollView>
+        android:layout_height="wrap_content"/>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
