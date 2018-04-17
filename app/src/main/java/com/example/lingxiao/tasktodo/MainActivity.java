@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQ_CODE_TODO_DETAIL = 100;
     private static final String TODOS = "todos";
     private List<Todo> todos;
+    private TodoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if (!found) {
             todos.add(todo);
         }
-        setupUI();
+        adapter.notifyDataSetChanged();
         ModelUtils.save(this, TODOS, todos);
     }
 
@@ -81,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
+        adapter = new TodoAdapter(this, todos);
         ListView listView = findViewById(R.id.list_view);
-        listView.setAdapter(new TodoAdapter(this, todos));
+        listView.setAdapter(adapter);
     }
 
 
