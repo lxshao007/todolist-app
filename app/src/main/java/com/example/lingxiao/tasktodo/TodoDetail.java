@@ -40,6 +40,11 @@ public class TodoDetail extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_detail);
+
+
+        todo = getIntent().getParcelableExtra(KEY_TODO);
+        remindDate = todo != null ? todo.remindDate: null;
+
         setupUI();
     }
 

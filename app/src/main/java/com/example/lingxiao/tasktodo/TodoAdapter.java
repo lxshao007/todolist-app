@@ -1,6 +1,7 @@
 package com.example.lingxiao.tasktodo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,11 @@ import java.util.List;
 
 public class TodoAdapter extends BaseAdapter {
 
-    private Context context;
+    private MainActivity activity;
     private List<Todo> data;
 
-    public TodoAdapter(Context context, List<Todo> data) {
-        this.context = context;
+    public TodoAdapter(MainActivity activity, List<Todo> data) {
+        this.activity = activity;
         this.data = data;
     }
 
@@ -51,14 +52,24 @@ public class TodoAdapter extends BaseAdapter {
         ViewHolder vh;
         if (convertView == null) {
             vh = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
+            convertView = activity.getLayoutInflater().inflate(R.layout.list_item, viewGroup, false);
             vh.text = (TextView) convertView.findViewById(R.id.list_item_text);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        Todo todo = data.get(i);
+        final Todo todo = data.get(i);
         vh.text.setText(todo.text);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, TodoDetail.class);
+                intent.putExtra(TodoDetail.KEY_TODO, todo);
+                activity.startActivityForResult(intent, MainActivity.REQ_CODE_TODO_DETAIL);
+            }
+        });
+
         return convertView;
     }
 }

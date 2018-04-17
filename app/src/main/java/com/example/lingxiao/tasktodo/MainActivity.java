@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void fakeData() {
         todos = new ArrayList<>();
-        for (int i = 0; i < 2; ++i) {
-            Todo td = new Todo("task" + i, DateUtils.stringToDate("2018 3 25 11:00"));
-            todos.add(td);
-        }
+//        for (int i = 0; i < 2; ++i) {
+//            Todo td = new Todo("task" + i, DateUtils.stringToDate("2018 3 25 11:00"));
+//            todos.add(td);
+//        }
     }
 
     private void setupUI() {
