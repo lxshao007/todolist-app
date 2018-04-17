@@ -11,7 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.lingxiao.tasktodo.Utils.DateUtils;
+import com.example.lingxiao.tasktodo.models.ModelUtils;
 import com.example.lingxiao.tasktodo.models.Todo;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQ_CODE_TODO_DETAIL = 100;
+    private static final String TODOS = "todos";
     private List<Todo> todos;
 
     @Override
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fakeData();
+        loadData();
         setupUI();
 
     }
@@ -62,18 +65,19 @@ public class MainActivity extends AppCompatActivity {
             todos.add(todo);
         }
         setupUI();
+        ModelUtils.save(this, TODOS, todos);
     }
 
     private void deleteTodo(String todoId) {
     }
 
-
-    private void fakeData() {
-        todos = new ArrayList<>();
-//        for (int i = 0; i < 2; ++i) {
-//            Todo td = new Todo("task" + i, DateUtils.stringToDate("2018 3 25 11:00"));
-//            todos.add(td);
-//        }
+    //get data from sharedPreference
+    private void loadData() {
+        todos = ModelUtils.read(this, TODOS, new TypeToken<List<Todo>>(){});
+        if (todos == null){
+            todos = new ArrayList<>();
+        }
+//
     }
 
     private void setupUI() {
