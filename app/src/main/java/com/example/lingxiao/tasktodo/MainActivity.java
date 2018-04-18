@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.lingxiao.tasktodo.Utils.DateUtils;
-import com.example.lingxiao.tasktodo.models.ModelUtils;
+import com.example.lingxiao.tasktodo.Utils.AlarmUtils;
+import com.example.lingxiao.tasktodo.Utils.ModelUtils;
 import com.example.lingxiao.tasktodo.models.Todo;
 import com.google.gson.reflect.TypeToken;
 

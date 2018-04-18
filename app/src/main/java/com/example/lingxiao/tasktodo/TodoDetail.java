@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.lingxiao.tasktodo.Utils.AlarmUtils;
 import com.example.lingxiao.tasktodo.Utils.DateUtils;
 import com.example.lingxiao.tasktodo.models.Todo;
 
@@ -152,6 +153,11 @@ public class TodoDetail extends AppCompatActivity implements
             todo.text = todoEdit.getText().toString();
             todo.remindDate = remindDate;
             todo.done = completeCb.isChecked();
+        }
+
+        if (remindDate != null) {
+            // fire alarm when saving the todo_item
+            AlarmUtils.setAlarm(this, remindDate);
         }
 
         Intent resultIntent = new Intent();
